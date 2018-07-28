@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试jQuery选择器</title>
+    <script src="jquery-3.3.1.js"></script>
+    <style>
+        div {
+            margin-left: 200px;
+            display: block;
+            margin-bottom: 50px;
+            padding-bottom: 50px;
+            padding-left: 50px;
+            border-bottom: 1px solid red;
+            border-left: 1px solid red;
+        }
+        
+        
+        p {
+            line-height: 1;
+        }
+        
+        table {
+            border-collapse: collapse;
+            border: 1px solid black;
+            text-align: center;
+        }
+        
+        tr td {
+            width: 100px;
+            border: 1px solid black;
+        }
+        
+        #test_animated span{
+            display: block;
+            width: 100px;
+            height: 50px;
+            margin: 10px 0px;
+            background: chartreuse;
+        }
+        #test_animated button{
+            font-size: 17px;
+            
+        }
+    
+    </style>
+    
+    <script>
+        $(function () {
+            /**
+             *$().css(field,value),
+             * css属性选择器，可以选择css属性，并设定为指定的值
+             */
+            //选择第三个p元素 eq--->equal
+            $("#test_eq p:eq(2)").css("backgroundColor", "#5bff7d")
+            $("#test_eq p:eq(3)").css("backgroundColor","blue")
+            //选择第四个li元素
+            $("#test_eq li:eq(3)").css("color", "red")
+            //选择index（index从0开始）大于1的tr元素   gt-->greater than
+            $("#test_gt tr:gt(1)").css("background-color", "blue")
+            //选择index小于3的tr元素  lt-->less than
+            $("#test_lt tr:lt(3)").css("background-color", "#ff00ff")
+            //选择所有h1-h6标题
+            $("#test_header :header").css("color","red");
+            
+            //使#test_animated下的第二个span元素产生动画效果
+            function animatedSpan() {
+                $("#test_animated span:eq(1)").animate({width:300},"slow");
+                $("#test_animated span:eq(1)").animate({width:100},"slow",animatedSpan);
+            }
+            animatedSpan();
+            
+            
+            $("#test_animated button").click(function () {
+                $("#test_animated :animated").css("background-color","blue")
+            })
+         
+            
+           
+            
+
+        })
+    
+    </script>
+
+</head>
+<body>
+    <div id="test_eq">
+        <h3>Welcome to My Home</h3>
+        <p>人生得意需尽欢，莫使金樽空对月</p>
+        <p>会当凌绝顶，一览众山小</p>
+        <p>乘分破浪会有时，直挂云帆济沧海</p>
+        <ul>
+            <li>C++</li>
+            <li>JAVA</li>
+            <li>Python</li>
+            <li>Javascript</li>
+        </ul>
+        <p>我是第四个p元素</p>
+    
+    </div>
+    <div id="test_gt">
+        <table>
+            <tr>
+                <td>Id</td>
+                <td>姓名</td>
+                <td>年龄</td>
+                <td>性别</td>
+            
+            </tr>
+            
+            <tr>
+                <td>1</td>
+                <td>张三</td>
+                <td>18</td>
+                <td>男</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>李四</td>
+                <td>25</td>
+                <td>女</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>王五</td>
+                <td>88</td>
+                <td>男</td>
+            </tr>
+        
+        </table>
+    
+    
+    </div>
+    <div id="test_lt">
+        <table>
+            <tr>
+                <td>Id</td>
+                <td>姓名</td>
+                <td>年龄</td>
+                <td>性别</td>
+            
+            </tr>
+            
+            <tr>
+                <td>1</td>
+                <td>张三</td>
+                <td>18</td>
+                <td>男</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>李四</td>
+                <td>25</td>
+                <td>女</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>王五</td>
+                <td>88</td>
+                <td>男</td>
+            </tr>
+        
+        </table>
+    
+    
+    </div>
+    <div id="test_header">
+        <h2>一起来学习吧</h2>
+        <h4>学习使我快乐</h4>
+    
+        <p>人生得意需尽欢，莫使金樽空对月</p>
+        <p>会当凌绝顶，一览众山小</p>
+        <p>乘分破浪会有时，直挂云帆济沧海</p>
+    </div>
+    <div id="test_animated">
+        <span></span>
+        <span></span>
+        <span></span>
+        <button >开始选中</button>
+        
+    </div>
+    
+
+
+</body>
+</html>

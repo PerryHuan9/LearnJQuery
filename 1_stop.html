@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试jq stop</title>
+    <!--stop(stopall,gotoend)
+     1.stop()不带参时stopall默认false，即停止当前动画，执行下一条动画
+     2.stop(true) stopall为true时，会清除动画队列，后续的所有动画将不会执行
+     3.stop(true,true) gotoend为true时会将当前动画快速执行到最后才停止
+    -->
+    <style>
+        #stop_animate {
+            height: 200px;
+            width: 400px;
+            background: #98bf21;
+            position: absolute;
+        }
+    
+    </style>
+    <script src="jquery-3.3.1.js"></script>
+    
+    <script>
+        $(function () {
+            $("button:eq(0)").click(function () {
+                $("#stop_animate").animate({left: '300px'}, 4000)
+                $("#stop_animate").animate({fontSize: '7em'}, 4000)
+            })
+
+            $("button:eq(1)").click(function () {
+                $("#stop_animate").stop()
+            })
+            $("button:eq(2)").click(function () {
+                $("#stop_animate").stop(true)
+            })
+            $("button:eq(3)").click(function () {
+                $("#stop_animate").stop(true,true)
+            })
+
+        })
+    
+    
+    </script>
+
+</head>
+<body>
+    <button>开始动画</button>
+    <button>stop()</button>
+    <button>stop(true)</button>
+    <button>stop(true,true)</button>
+    <div style="position: relative;">
+        <div id="stop_animate">
+            HELLO
+        </div>
+    </div>
+</body>
+</html>

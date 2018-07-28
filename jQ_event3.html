@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试jQuery的事件</title>
+    
+    <style>
+        div {
+            margin-left: 200px;
+            display: block;
+            margin-bottom: 50px;
+            padding-bottom: 50px;
+            padding-left: 50px;
+            border-bottom: 1px solid red;
+            border-left: 1px solid red;
+        }
+    </style>
+    <script src="jquery-3.3.1.js"></script>
+    
+    <script type="text/javascript">
+        $(function () {
+            $("#test_trigger input").select(function () {
+                $(this).after("文本被选中")
+            })
+            //trigger触发被选中元素的指定事件
+            $("#test_trigger button").click(function () {
+                $("#test_trigger input").trigger("select");
+            })
+            
+            
+            
+        })
+    </script>
+    
+    
+    
+</head>
+<body>
+    <div id="test_trigger">
+        <input type="text"><br>
+        <button>触发triger事件</button>
+    </div>
+    
+    
+</body>
+</html>

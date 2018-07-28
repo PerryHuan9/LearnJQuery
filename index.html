@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>初始jQuery</title>
+    
+    <script src="jquery-3.3.1.js"></script>
+    <!--<script type="text/javascript" src="js/myjs/index.js"></script>-->
+    <style>
+    </style>
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('P').click(function () {
+                // $(this).hide();
+            })
+        })
+        $(function () {
+            $(".p1").html("天涯何处无芳草")
+            
+            $('.p1,span,#baidu').click(function () {
+                $(this).hide();
+            })
+        })
+        //使用jq代替$符号，$符号将会无效
+        var jq=jQuery.noConflict();
+        jq(function () {
+            jq("b").css("color","red");
+        })
+        
+        jq(function () {
+            jq("b").css("font-style","italic")
+        })
+        
+    
+    </script>
+    
+
+</head>
+<body>
+    <p>
+        浪花淘尽英雄
+    </p>
+    
+    <p class="p1">
+        浪花淘尽英雄
+    </p>
+    <span>何必单恋一枝花</span>
+    
+    <a  id="baidu" href="http://www.baidu.com" title="调到百度" target="_blank">百度</a>
+    
+    <b>我是b标签</b>
+    
+
+</body>
+</html>
+

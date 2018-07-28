@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试jq callback</title>
+    <!--jq很多动作执行完成后都可以执行回调函数-->
+    <script src="jquery-3.3.1.js"></script>
+    <script>
+        $(function () {
+            //这种情况将会等动画执行结束才弹出窗口
+            $("#btn1").click(function () {
+                    $("p:eq(0)").slideToggle(3000,function () {
+                        alert("动作完成")
+                    })
+            })
+            //这种情况则是先弹出窗口才执行动画
+            $("#btn2").click(function () {
+                $("p:last-child").slideToggle(3000)
+                alert("动作完成")
+            })
+            
+        })
+        
+    </script>
+    
+    
+</head>
+<body>
+    
+    <button id="btn1" style="width: 400px;background: antiquewhite;text-align: center ">
+        有回调的情况
+    </button>
+    <p style="width: 400px;background: antiquewhite;text-align: center;display: none">
+        许多 jQuery 函数涉及动画。这些函数也许会将 speed 或 duration 作为可选参数。
+        例子：$("p").hide("slow")
+        speed 或 duration 参数可以设置许多不同的值，比如 "slow", "fast", "normal" 或毫秒。
+    </p>
+    <br>
+    <br>
+    <br>
+    
+    <button id="btn2" style="width: 400px;background: antiquewhite;text-align: center ">
+        无回调的情况
+    </button>
+    
+    <p style="width: 400px;background: antiquewhite;text-align: center;display: none">
+        许多 jQuery 函数涉及动画。这些函数也许会将 speed 或 duration 作为可选参数。
+        例子：$("p").hide("slow")
+        speed 或 duration 参数可以设置许多不同的值，比如 "slow", "fast", "normal" 或毫秒。
+    </p>
+    
+    
+</body>
+</html>

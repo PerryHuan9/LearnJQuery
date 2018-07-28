@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试animate动画效果</title>
+    <script src="jquery-3.3.1.js"></script>
+    <style>
+        body > div {
+            margin-left: 200px;
+            display: block;
+            margin-bottom: 50px;
+            padding-bottom: 50px;
+            padding-left: 50px;
+            border-bottom: 1px solid red;
+            border-left: 1px solid red;
+        }
+        
+        #test_animate2 div {
+            width: 300px;
+            height: 150px;
+            text-align: center;
+            background-color: #98bf21;
+            position: absolute;
+            top: 40px;
+        }
+    </style>
+    <script>
+        $.prototype["myToggle"]= function () {
+            var args = arguments;
+            var i = 0;
+            var that=this;
+            var n = args.length;
+
+            this.click(function () {
+                var func = args[i];
+                if (typeof func === 'function') {
+                    func.call(that);
+                }
+                i ++;
+                if(i==n)i=0;
+                return false;
+            });
+        };
+
+        $(function () {
+            function myAnimate() {
+                $("#test_animate span").animate({
+                    height: "310px",
+                    width: "300px",
+                    borderWidth: "10px",
+                    borderColor: "green"
+                }, 1000);
+                $("#test_animate span").animate({
+                    height: "80",
+                    width: "90px",
+                    borderWidth: "1px",
+                    borderColor: "black"
+                }, 1000, myAnimate);
+            }
+
+            // myAnimate()
+
+            // $("#test_animate2 button").click(function () {
+            //     var div=$("#test_animate2 div");
+            //     div.animate({left:"300px"},"slow");
+            //     $("#test_animate2 div b").animate({fontSize:"5em"},"slow")
+            // })
+
+            $("#test_animate2 span").myToggle(
+                function () {
+                    var div = $("#test_animate2 div");
+                    div.animate({left: "300px"}, "slow");
+                    $("#test_animate2 div b").animate({fontSize: "5em"}, "slow")
+                }, function () {
+                    var div = $("#test_animate2 div");
+                    div.animate({left: "100px"}, "slow");
+                    $("#test_animate2 div b").animate({fontSize: "20px"}, "slow")
+                }
+            )
+            
+            // $("")
+            
+            
+        })
+    
+    </script>
+</head>
+<body>
+    <div id="test_animate">
+        <span style="display: block;width: 100px;height: 100px;background-color: red"></span>
+    </div>
+    <div id="test_animate2" style="position: relative;height: 200px">
+        <div>
+            <b style="font-size: 20px;line-height: 150px">HELLO</b>
+        </div>
+        <span >请开始你的表演</span>
+    </div>
+
+
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试jquery的事件</title>
+    <style>
+        div {
+            margin-left: 200px;
+            display: block;
+            margin-bottom: 50px;
+            padding-bottom: 50px;
+            padding-left: 50px;
+            border-bottom: 1px solid red;
+            border-left: 1px solid red;
+        }
+        
+        h1 {
+            text-align: center;
+        }
+        
+        #test_mouse b{
+            display: block;
+            height: 200px;
+            color: white;
+            width: 200px;
+            background-color: blue;
+        }
+        
+        #test_mouse b i{
+            width: 100px;
+            white-space: normal;
+            display: block;
+            height: 100px;
+            background-color: red;
+            margin: 20px auto;
+        }
+    
+    </style>
+    <script src="jquery-3.3.1.js"></script>
+    
+    <script>
+        $(function () {
+            //为button元素绑定点击事件
+            // $("button").bind("click",function () {
+            //     $("p").slideToggle();
+            // })
+            //为button元素绑定多个事件
+            $("#test_bind button").bind({
+                //点击事件
+                click: function () {
+                    $("#test_bind p").slideToggle();
+                },
+                //鼠标在上面时事件
+                mouseover: function () {
+                    $(this).css('background-color', "red")
+                },
+                //鼠标不移到上面时的事件
+                mouseout: function () {
+                    $(this).css("background-color", "blue")
+                }
+            });
+
+            //获取焦点触发事件
+            $("#test_blur input").focus(function () {
+                $(this).css("background", "blue")
+            })
+            //失去焦点触发事件
+            $("#test_blur input").blur(function () {
+                $(this).css("background", "red")
+            });
+            //通过button触发focus事件
+            $("#test_blur button:eq(0)").click(function () {
+                $("#test_blur input").focus();
+            })
+            //通过button触发blur事件
+            $("#test_blur button:eq(1)").click(function () {
+                $("#test_blur input").blur();
+            })
+            
+            //内容改变会触发change事件(通常用于input、select 、textarea)，使元素改变背景颜色
+            $("#test_change .field").change(function () {
+                $(this).css("background-color", "green")
+            })
+            $("#test_change button").click(function () {
+                $("#test_change .field").change();
+            })
+            
+            //动态为一个或多个元素添加事件
+            $("#test_delegate").delegate("p","click",function () {
+                $(this).slideToggle()
+            })
+            //使用这种方法，后来添加的p元素点击将不会触发点击事件
+            // $("#test_delegate p").click(function () {
+            //         $(this).slideToggle()
+            // })
+            
+            $("#test_delegate button").click(function () {
+                $("<p>江山如此多娇，引无数英雄竞折腰</p>").insertAfter("#test_delegate button")
+            })
+            
+           
+
+        });
+        //有关鼠标的jquery事件
+        $(function () {
+            //鼠标移动事件，mouse.pageX：获得鼠标当前X位置，mouse.Y获得鼠标当前Y位置
+            $(document).mousemove(function (mouse) {
+                $("#test_mouse p span").text("X:"+mouse.pageX+",Y:"+mouse.pageY);
+            })
+
+            $("#test_mouse button").mousedown(function (mouse) {
+                $("#test_mouse p:eq(0)").css('color',"red")
+            })
+
+            $("#test_mouse button").mouseup(function (mouse) {
+                $("#test_mouse p:eq(0)").css('color',"green")
+            })
+
+            //当鼠标穿过被选中元素(穿过其子元素并不会触发)会触发mouseenter事件
+            $("#test_mouse p:eq(1)").mouseenter(function () {
+                $(this).css("color","green");
+            })
+            //当鼠标离开(离开其子元素并不会触发)被选中元素会触发mouseleave事件
+            $("#test_mouse p:eq(1)").mouseleave(function () {
+                $(this).css("color","red")
+            })
+            //穿过被选中的元素包括其子元素都会触发该事件
+            var i=0,j=0;
+            $("#test_mouse b").mouseover(function () {
+                $("#test_mouse b span:eq(0)").text(++i);
+            })
+            //离开被选中的元素包括其子元素都会触发mouseut事件
+            $("#test_mouse b ").mouseout(function () {
+                $("#test_mouse b span:eq(1)").text(++j);
+            })
+        })
+    
+    </script>
+
+</head>
+<body>
+    <h1>开始你的旅程</h1>
+    <div id="test_bind">
+        <p>书山有路勤为径，学海无涯苦作舟</p>
+        <button>触发事件</button>
+    </div>
+    <div id="test_blur">
+        点击输入框获取焦点：<input type="text">
+        <p>请点击其它地方使其失去焦点，触发blur事件</p>
+        <button>触发focus事件</button>
+        <button>触发blur事件</button>
+    </div>
+    <div id="test_change">
+        改变内容会触发change事件；<input type="text" class="field">
+        <select name="select" class="field">
+            <option value="">奥迪</option>
+            <option value="">奔驰</option>
+            <option value="">宝马</option>
+        </select><br>
+        <button>触发input和select的change事件</button>
+    </div>
+    <div id="test_delegate">
+        <p>长江后浪推前浪，一代新人胜旧人</p>
+        <p>为个人之未来而读书</p>
+        <button>点击添加元素</button>
+    </div>
+    <div id="test_mouse">
+        <p>鼠标位于<span></span></p>
+        <button>在这里按下鼠标后，上面内容将会改变颜色，松开也会改变颜色</button>
+        <p>鼠标在这上面将会改变字的颜色</p>
+        <b>
+            mouseover触发次数:<span></span>
+            mouseout触发次数:<span></span>
+            <i>我是里面的i元素</i>
+        </b>
+        
+    </div>
+
+</body>
+</html>

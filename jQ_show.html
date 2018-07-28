@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试显示和隐藏效果</title>
+    <style>
+        body>div {
+            margin-left: 200px;
+            display: block;
+            margin-bottom: 50px;
+            padding-bottom: 50px;
+            padding-left: 50px;
+            border-bottom: 1px solid red;
+            border-left: 1px solid red;
+        }
+        #test_fade ul li {
+            display: inline-block;
+            list-style: none;
+            margin: 50px 200px;
+        }
+        
+    </style>
+    <script src="jquery-3.3.1.js"></script>
+    <script>
+        $(function () {
+            $("#nav ul li:first-child").mouseenter(function () {
+                $("#nav ul p").show(1000, function () {
+                    // alert("已经显示")
+                });
+            })
+            $("#nav ul li:first-child").mouseleave(function () {
+                $("#nav ul p").hide(1000);
+            })
+
+            $("#toggle button").click(function () {
+                $("#toggle p").toggle(1000);
+            })
+
+
+            //fadeIn可实现淡入效果，参数可以为空，slow或具体的毫秒数
+            $("#test_fade ul:first-child button").mouseenter(function () {
+                $("#test_fade ul:first-child p").fadeIn(1000);
+            })
+            //实现淡出的效果，参数如fadeIn
+            $("#test_fade ul:first-child button").mouseleave(function () {
+                $("#test_fade ul:first-child p").fadeOut(1000);
+            })
+            
+            //fadeToggle实现淡入淡出效果,
+            // 如果元素已淡出，则 fadeToggle() 会向元素添加淡入效果。
+            // 如果元素已淡入，则 fadeToggle() 会向元素添加淡出效果。
+            $("#test_fade ul:eq(1) button").click(function () {
+                $("#test_fade ul:eq(1) p").fadeToggle(1000)
+            })
+            
+            // $("#test_fade ul:eq(1) button").click(function () {
+            //     $("#test_fade ul:eq(1) p").fadeToggle(1000)
+            // })
+            
+            
+            //fadeTo使元素逐渐变为指定的不透明度（0-1,0为透明）
+            $("#test_fade>button").click(function () {
+                $("#test_fade div:eq(0)").fadeTo("slow",0.1);
+                 $("#test_fade div:eq(1)").fadeTo("slow",0.5);
+                 $("#test_fade div:eq(2)").fadeTo("slow",0.7);
+            })
+            
+
+
+        })
+    
+    </script>
+
+</head>
+<body>
+    <div id="nav">
+        <ul>
+            <li style="list-style: none;width: 100px; background-color: blue;text-align:
+            center;color: white">
+                地区
+            </li>
+            <p style="width: 300px" hidden>天涯何处无芳草，何必单恋一枝花.可选的
+                                           speed 参数规定隐藏/显示的速度，可以取以下值："slow"、"fast" 或毫秒。
+                                           可选的 callback 参数是隐藏或显示完成后所执行的函数名称。
+            
+                                           下面的例子演示了带有 speed 参数的 hide() 方法：
+            </p>
+            <b>
+                可选的 callback 参数是隐藏或显示完成后所执行的函数名称。
+                下面的例子演示了带有 speed 参数的 hide() 方法：
+            </b>
+        </ul>
+    </div>
+    
+    <div id="toggle">
+        <button>action</button>
+        <p style="width: 300px" hidden>天涯何处无芳草，何必单恋一枝花.可选的
+                                       speed 参数规定隐藏/显示的速度，可以取以下值："slow"、"fast" 或毫秒。
+                                       可选的 callback 参数是隐藏或显示完成后所执行的函数名称。
+        
+                                       下面的例子演示了带有 speed 参数的 hide() 方法：
+        </p>
+    
+    </div>
+    
+    
+    <div id="test_fade">
+        <ul>
+            <li>
+                
+                <button>fadeIn fadeOut</button>
+                <p style="width: 200px" hidden>天涯何处无芳草，何必单恋一枝花.可选的
+                                               speed 参数规定隐藏/显示的速度，可以取以下值："slow"、"fast" 或毫秒。
+                                               可选的 callback 参数是隐藏或显示完成后所执行的函数名称。
+                                               下面的例子演示了带有 speed 参数的 hide() 方法：
+            </li>
+        </ul>
+        
+        <ul>
+    
+            <li>
+                <button>fadeToggle</button>
+                <p style="width: 200px" hidden>天涯何处无芳草，何必单恋一枝花.可选的
+                                               speed 参数规定隐藏/显示的速度，可以取以下值："slow"、"fast" 或毫秒。
+                                               可选的 callback 参数是隐藏或显示完成后所执行的函数名称。
+                                               下面的例子演示了带有 speed 参数的 hide() 方法：</p>
+            </li>
+
+        </ul>
+        
+        <div style="width: 150px;height: 150px;background-color: blue"></div>
+        <div style="width: 150px;height: 150px;background-color: red"></div>
+        <div style="width: 150px;height: 150px;background-color: green"></div>
+        <button>fadeTo</button>
+
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="jquery-3.3.1.js"></script>
+    <title>测试jQuery属性选择器</title>
+</head>
+<body id="adj">
+    <form action="" enctype="multipart/form-data" method="get">
+        <input type="text" class="text input1" id="13">
+        <input type="checkbox" class="checkbox input2" id="123">
+        <input type="color" class="color input3" id="645">
+        <input type="text" class="radioinput4" id="12">
+        <input type="text" class="password input1">
+        <span class="akdj input7">天大家都</span>
+        <span class="ko">span元素</span>
+        <b class="ko bo">b元素</b>
+        <i class="bo ko">i元素</i>
+        
+        <em class="qw cw ab" id="dar">em元素</em>
+        <em class=" cw ab">em元素</em>
+        <em class="qw cw afb">em元素</em>
+        <em class="qw cw ab" id="da">em元素</em>
+        
+        
+    </form>
+    
+    <script>
+        $(function () {
+            //选定所有type属性值为text或以text开头(text之后须有-)的的元素
+            $("[type|=text]").css("background","red")
+            //选定class属性中包含有input字符串的元素
+            $("[class*=input]").css("background","green")
+            //选定class属性值包含有input1（class属性可以有多个值，存在一个即可匹配）的元素
+            $("[class~=input1]").val("日了狗了，才怪")
+            //选定class属性值为ko（只存在一个值才会被选中）的元素
+            $("[class=ko]").css("background","blue")
+            //选定不存在id属性或id属性值不为12的元素
+            // $("[id!=12]").css("background","red")
+            //选中class属性值以o结尾的元素
+            $("[class$=o]").html("我的class属性以o结尾，我被选中了")
+            
+            $("[class^=k]").html("我是以k开头的");
+            
+            $("[id][type=text]").css("background","red")
+            
+            
+            
+        })
+        
+    </script>
+    
+    
+</body>
+</html>

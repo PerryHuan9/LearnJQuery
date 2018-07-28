@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试一些例程</title>
+    <script src="jquery-3.3.1.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#start").click(function(){
+
+                $("#box").animate({height:300},"slow");
+                $("#box").animate({width:300},"slow");
+                $("#box").animate({height:100},"slow");
+                $("#box").animate({width:100},"slow");
+                // $("#box").queue(function () {
+                //     $(this).css("background-color","red");
+                //     $(this).dequeue();
+                // });
+
+
+            });
+            $("#stop").click(function(){
+                $("#box").clearQueue();
+            });
+        });
+    </script>
+</head>
+<body>
+    
+    <p><button id="start">Start Animation</button><button id="stop">Stop Animation</button></p>
+    <div id="box" style="background:#98bf21;height:100px;width:100px;position:relative">
+    </div>
+
+</body>
+</html>
+

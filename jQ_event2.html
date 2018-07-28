@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试jQuery的事件2</title>
+    <script src="jquery-3.3.1.js"></script>
+    
+    <style>
+        div {
+            margin-left: 200px;
+            display: block;
+            margin-bottom: 50px;
+            padding-bottom: 50px;
+            padding-left: 50px;
+            border-bottom: 1px solid red;
+            border-left: 1px solid red;
+        }
+        
+        h1 {
+            text-align: center;
+        }
+        
+        #test_toggle {
+            height: 50px;
+            /*background: red;*/
+        }
+    
+    
+    </style>
+    
+    <script>
+        $(function () {
+            $("#test_event h2,h3,p,b").click(function (event) {
+                $("#test_event span").html("点击事件是由" + event.target.nodeName + "元素触发")
+                return event.target.nodeName;
+            })
+            $("#test_event h2").click(function (event) {
+                $("#test_event em").html("返回的结果是" + event.result + ",事件类型:" + event.type)
+            })
+
+            $("#test_event button").click(function (e) {
+                $(this).text("点击发生距1970年1月1日的毫秒数：" + e.timeStamp)
+            })
+
+            $("#test_event input").keydown(function (e) {
+                $("#test_event address").html("KEY:" + e.which)
+            })
+            var a = 0;
+            $("#test_key").keypress(function () {
+                $("#test_key span").text(++a);
+            })
+
+            // $("#test_key img").load(function () {
+            //     $("#test_key em").html("图片加载完毕")
+            // })
+            //one设置的事件只能触发一次
+            $("#test_one p").one("click", function () {
+                $(this).animate({fontSize: "+=6px"})
+            })
+
+            var i = 0;
+            //调整浏览器的大小便会触发这个事件
+            $(window).resize(function () {
+                $("#test_one span").html("resize事件触发次数：" + ++i);
+            })
+
+            //滚动会触发此事件
+            k = 0
+            $("#test_scroll p").scroll(function () {
+                $("#test_scroll span").text(++k);
+            })
+            //input、textarea等元素的文本被选中会触发该事件
+            $("#test_select input,#test_select textarea").select(function () {
+                $(this).after("文本被选中触发了select事件")
+            })
+
+            $("#test_submit form").submit(function () {
+                alert("触发提交事件")
+            })
+
+            $("#test_submit button").click(function () {
+                $("#test_submit form").submit();
+            })
+
+            $("#test_toggle button").click(
+                function () {
+                    $("#test_toggle p").toggle(1000)
+                }
+            );
+
+
+        })
+    
+    </script>
+
+</head>
+<body>
+    <h1>开始你的学习之旅</h1>
+    <div id="test_event">
+        <h2>我是大标题</h2>
+        <h3>我是第二标题</h3>
+        <p>我是一个段落</p>
+        <b>我是粗体字</b><br>
+        <span></span><br>
+        <em></em><br>
+        <button>多少秒</button>
+        <input type="text">
+        <address></address>
+    </div>
+    
+    <div id="test_key">
+        <input type="text">
+        <span></span><br>
+        <img src="img/bg2.jpg" alt="图片无法加载"/><br><br>
+        <em></em>
+    </div>
+    
+    <div id="test_one">
+        <p>世上安得两全法，不负如来不负卿</p>
+        <p>说什么王权富贵，怕什么戒律清规</p>
+        <p>既生苦难我西行,念什么善恶慈悲</p>
+        <span></span>
+    </div>
+    
+    <div id="test_scroll">
+        <p style="width: 200px;height:100px;overflow: scroll">
+            世上安得两全法，不负如来不负卿，
+            世上安得两全法，不负如来不负卿,
+            世上安得两全法，不负如来不负卿,
+            世上安得两全法，不负如来不负卿,
+            世上安得两全法，不负如来不负卿,
+            世上安得两全法，不负如来不负卿,
+            世上安得两全法，不负如来不负卿,
+            世上安得两全法，不负如来不负卿,
+            世上安得两全法，不负如来不负卿,
+            世上安得两全法，不负如来不负卿,
+        </p>
+        <span></span>
+    </div>
+    
+    <div id="test_select">
+        <input type="text" value="ajxdbasdbj"><br>
+        <textarea>文本被选中</textarea>
+    </div>
+    
+    <div id="test_submit">
+        <form action="">
+            <input type="text"><br>
+            <input type="password"><br>
+            <input type="submit" value="提交"><br>
+        </form>
+        
+        <button>触发提交事件</button>
+    
+    </div>
+    
+    <div id="test_toggle">
+        <!--<button>触发toggle事件</button>-->
+        <p>我可以出来也可以消失</p>
+        <button>消失</button>
+    
+    </div>
+    
+    <button class="bu">触发toggle事件</button>
+
+</body>
+</html>
